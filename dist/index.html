@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#224d42">
+  <meta name="description" content="От знакомого Минска до городов на другом конце света. 41 вопрос ко Всемирному дню городов: проверьте себя и откройте новое.">
+  <title>Городской кругозор · 41 вопрос о городах</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержимому</a>
+  <header class="site-header shell">
+    <a class="brand" href="#" data-action="home" aria-label="Городской кругозор — на главную">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17"/><ellipse cx="20" cy="20" rx="8" ry="17"/><path d="M3 20h34M7 10h26M7 30h26"/></svg>
+      <span>городской<br><strong>кругозор</strong></span>
+    </a>
+    <nav aria-label="Основная навигация"><a href="#route" data-action="route">Что в квизе</a><button class="text-button" data-action="rules">Правила <span data-icon="arrow-up-right" aria-hidden="true"></span></button></nav>
+  </header>
+  <main id="main" tabindex="-1"></main>
+  <footer class="site-footer shell"><span>К Всемирному дню городов</span><div><button data-action="about">О проекте и источниках</button></div></footer>
+  <dialog id="dialog" aria-labelledby="dialog-title"><button class="dialog-close" data-action="close" aria-label="Закрыть"><span data-icon="close" aria-hidden="true"></span></button><div id="dialog-content"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="shell">Чтобы пройти интерактивный квиз, включите JavaScript в браузере.</p></noscript>
+</body>
+</html>

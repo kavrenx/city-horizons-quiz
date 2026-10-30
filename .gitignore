@@ -1,0 +1,9 @@
+node_modules/
+.sites-runtime/
+.sites-checkout/
+.openai/
+qa/
+*.log
+/*.zip
+/*.tar.gz
+test-results/

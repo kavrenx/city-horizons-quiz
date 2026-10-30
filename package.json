@@ -1,0 +1,10 @@
+{
+  "name": "city-horizons-quiz",
+  "version": "1.0.0",
+  "private": true,
+  "description": "41 вопрос ко Всемирному дню городов",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check dist/app.js && node --check dist/data.js && node scripts/check.mjs"
+  }
+}

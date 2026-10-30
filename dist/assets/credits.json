@@ -1,0 +1,90 @@
+[
+  {
+    "place": "Minsk",
+    "file": "minsk.jpg",
+    "author": "Homoatrox",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:View_of_Minsk_%28180819%29_09.jpg"
+  },
+  {
+    "place": "Mir_Castle_Complex",
+    "file": "mir_castle_complex.jpg",
+    "author": "Вадзім Новикаў",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9C%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%BC%D0%BA%D0%B0.JPG"
+  },
+  {
+    "place": "Polotsk",
+    "file": "polotsk.jpg",
+    "author": "Belarus2578",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Polack_Montage_%282017%29.jpg"
+  },
+  {
+    "place": "London",
+    "file": "london.jpg",
+    "author": "\nIlya Grigorik",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:London_Skyline_%28125508655%29.jpeg"
+  },
+  {
+    "place": "Istanbul",
+    "file": "istanbul.jpg",
+    "author": "Hunanuk",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Historical_peninsula_and_modern_skyline_of_Istanbul.jpg"
+  },
+  {
+    "place": "Canberra",
+    "file": "canberra.jpg",
+    "author": "The 3B's",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Canberra_panorama_from_Mount_Ainslie.jpg"
+  },
+  {
+    "place": "Damascus",
+    "file": "damascus.jpg",
+    "author": "Vyacheslav Argenberg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Damascus%2C_Syria%2C_Panoramic_view_of_Damascus.jpg"
+  },
+  {
+    "place": "Rome",
+    "file": "rome.jpg",
+    "author": "Diliff",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Trevi_Fountain%2C_Rome%2C_Italy_2_-_May_2007.jpg"
+  },
+  {
+    "place": "Athens",
+    "file": "athens.jpg",
+    "author": "Andrew Parlette",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Athens_Acropolis_at_Daybreak.jpg"
+  },
+  {
+    "place": "Wellington",
+    "file": "wellington.jpg",
+    "author": "russellstreet",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Seddon_Statue_in_Parliament_Grounds.jpg"
+  },
+  {
+    "place": "Amsterdam",
+    "file": "amsterdam.jpg",
+    "author": "Billie Grace Ward from New York, USA",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Amsterdam_Canals_%2823585867048%29.jpg"
+  }
+]
