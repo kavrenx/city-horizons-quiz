@@ -1,0 +1,31 @@
+<!doctype html>
+<!-- Исходник обложки ссылки. Рендерить при viewport 1200×630 в JPEG. -->
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1200,initial-scale=1">
+  <link rel="stylesheet" href="../dist/fonts.css">
+  <title>Обложка · Клуб «Поколение NEXT»</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:1200px;height:630px;overflow:hidden}body{background:#fafbf7;color:#233d33;font-family:Manrope,Arial,sans-serif;position:relative}
+    .glow{position:absolute;width:510px;height:510px;left:690px;top:54px;border-radius:50%;background:#eaf0e2;box-shadow:0 0 0 23px #f2f5ec}
+    .identity{position:absolute;left:65px;top:48px;display:flex;align-items:center;gap:16px}.identity img{width:78px;height:78px;object-fit:contain;border-radius:50%;background:white}.identity small{font-size:11px;letter-spacing:1.6px;font-weight:800;color:#849174}.identity strong{display:block;margin-top:6px;font-size:21px;line-height:1.4}
+    h1{position:absolute;left:65px;top:171px;margin:0;font:400 75px/1.1 Lora,Georgia,serif;letter-spacing:-3px;z-index:3}h1 em{font-weight:400;color:#6a8864}p{position:absolute;left:68px;top:373px;width:485px;font-size:22px;line-height:1.7;z-index:3;margin:0}
+    .date{position:absolute;left:68px;bottom:53px;font-size:14px;font-weight:700;letter-spacing:.5px;display:flex;gap:13px;align-items:center}.date i{height:7px;width:7px;border-radius:50%;background:#cb8a68}
+    figure{position:absolute;background:white;padding:10px 10px 0;margin:0;box-shadow:0 13px 35px #233d331a;border:1px solid #e2e7da;border-radius:4px}figure img{width:100%;height:calc(100% - 39px);object-fit:cover;display:block}figcaption{height:39px;display:flex;align-items:center;padding-left:5px;font-size:12px;font-weight:650;color:#556e4c}.minsk{left:677px;top:79px;width:430px;height:317px;transform:rotate(-7deg);z-index:1}.grodno{left:826px;top:343px;width:313px;height:225px;transform:rotate(7deg);z-index:2}
+    .stamp{position:absolute;left:661px;top:412px;width:135px;height:135px;border-radius:50%;border:1.5px solid #78916e;background:#dfead4;box-shadow:0 0 0 7px #fafbf7;transform:rotate(-10deg);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:4}.stamp b{font:400 53px/1.05 Lora,Georgia,serif}.stamp span{font-size:11px;letter-spacing:1px;font-weight:800;margin-top:7px}
+    .spark{position:absolute;right:60px;top:28px;width:43px;height:43px;stroke:#cf916e;stroke-width:1.6;fill:none;stroke-linecap:round;z-index:4}
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="identity"><img src="../dist/assets/club-next.jpg" alt="Эмблема клуба"><div><small>ВАС ПРИГЛАШАЕТ</small><strong>Клуб ЮНЕСКО<br>«Поколение NEXT»</strong></div></div>
+  <h1>Городской<br><em>кругозор.</em></h1>
+  <p>41 вопрос о городах<br>Беларуси и мира</p>
+  <div class="date"><i></i>31 октября · Всемирный день городов</div>
+  <figure class="minsk"><img src="../dist/assets/minsk-gates.jpg" alt="Ворота Минска"><figcaption>Минск, Беларусь</figcaption></figure>
+  <figure class="grodno"><img src="../dist/assets/belarus-cities.jpg" alt="Панорама Гродно"><figcaption>Гродно, Беларусь</figcaption></figure>
+  <div class="stamp"><b>41</b><span>ОТКРЫТИЕ</span></div>
+  <svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M5 5l14 14M5 19 19 5"/></svg>
+</body>
+</html>

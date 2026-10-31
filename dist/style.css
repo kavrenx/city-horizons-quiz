@@ -45,4 +45,21 @@ body[data-screen="quiz"] .site-header [data-action="route"]{display:none}
 .aside-score strong{display:flex;align-items:baseline;white-space:nowrap}
 .aside-score strong small{font-size:21px;color:#8b967f;font-weight:400}
 @media(max-width:760px){.quiz-aside .aside-score strong{font-size:34px}.quiz-aside .aside-score span{font-size:10px}.quiz-aside>.text-link{font-size:12px;padding:15px 0}.quiz-aside>.text-link .icon{width:17px;height:17px}}
+/* Панорамные фотографии сохраняют архитектуру целиком. */
+.journey-photo{height:auto;aspect-ratio:4/3}
+.journey-photo img{position:absolute;inset:0;width:100%;height:100%}
+@media(max-width:760px){.journey-photo{aspect-ratio:16/10}}
+/* Приглашение от клуба — с оригинальной эмблемой. */
+.club-invitation{display:inline-flex;align-items:center;gap:12px;max-width:100%;padding:10px 17px 10px 10px;margin-bottom:24px;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px}
+.club-invitation:hover{border-color:#a8baa0;box-shadow:0 4px 18px #244e4208}
+.club-invitation img{width:52px;height:52px;object-fit:contain;border-radius:50%;flex-shrink:0}
+.club-invitation small{display:block;font-size:8px;letter-spacing:.12em;font-weight:800;color:#8b967e;margin-bottom:4px}
+.club-invitation strong{display:block;font-size:12px;line-height:1.45;font-weight:750}
+.about-club{display:flex;align-items:center;gap:15px;margin-bottom:19px}
+.about-club img{width:64px;height:64px;object-fit:contain;border-radius:50%;flex-shrink:0}
+.about-club .eyebrow{margin:0 0 5px;font-size:8px}
+.about-club strong{font-size:14px;line-height:1.5}
+.footer-dedication{display:grid;gap:4px}
+.footer-dedication small{font-family:var(--sans);font-style:normal;font-size:9px;font-weight:500;letter-spacing:0;line-height:1.6;color:#87927c}
+@media(max-width:760px){.club-invitation{gap:11px;padding:8px 14px 8px 8px;margin-bottom:23px}.club-invitation img{width:46px;height:46px}.club-invitation strong{font-size:12px}.club-invitation small{font-size:7px}.footer-dedication small{font-size:9px}.hero .eyebrow{font-size:8px}}
 @media print{.site-header,.site-footer,.quiz-toolbar,.result-actions,.review-controls,.result-bottom,dialog,#toast,.skip-link{display:none!important}.shell{padding:0;max-width:none}.result-hero{grid-template-columns:1fr 180px;gap:20px}.score-ring{width:160px;height:160px}.score-ring>div{width:145px;height:145px}.result-hero h1{font-size:30px}.topic-score-grid{grid-template-columns:repeat(4,1fr)}.study-section{break-inside:avoid}.review-item{break-inside:avoid}.review-body{display:block}.review-item summary{font-size:10px}.review-item{content-visibility:visible}body{background:white}.review-item:not([open]) .review-body{display:block}a{color:inherit}.score-ring{-webkit-print-color-adjust:exact;print-color-adjust:exact}}

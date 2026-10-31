@@ -19,6 +19,14 @@ for(const q of questions){
 }
 const credits=JSON.parse(readFileSync('dist/assets/credits.json','utf8'));
 for(const credit of credits){assert.ok(existsSync('dist/assets/'+credit.file));assert.ok(credit.author&&credit.license&&credit.source);}
+for(const q of questions){
+  if(!q.photo)continue;
+  const credit=credits.find(c=>c.id===q.photo||c.place.toLowerCase()===q.photo);
+  const photo=credit?.file||(['venice','tokyo','newyork'].includes(q.photo)?q.photo+'.jpg':null);
+  assert.ok(photo&&existsSync('dist/assets/'+photo),`Фото ответа на вопрос ${q.id}`);
+}
+assert.ok(existsSync('dist/assets/club-next.jpg'),'Оригинальная эмблема клуба');
+assert.ok(existsSync('dist/assets/share-card.jpg'),'Обложка для карточки ссылки');
 const css=readFileSync('dist/fonts.css','utf8');
 for(const [,font] of css.matchAll(/url\(([^)]+)\)/g))assert.ok(existsSync('dist/'+font),`Локальный шрифт ${font}`);
 console.log('OK: 41 вопрос, 4 темы, 123 варианта, пояснения, источники, фото и локальные шрифты.');

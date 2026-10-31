@@ -56,7 +56,24 @@
   let screen='home', resultRun=null, filter='all', topicFilter='all';
   const photoNames={Minsk:'Минск, Беларусь',Mir_Castle_Complex:'Мирский замок, Беларусь',Polotsk:'Полоцк, Беларусь',London:'Лондон, Великобритания',Istanbul:'Стамбул, Турция',Canberra:'Канберра, Австралия',Damascus:'Дамаск, Сирия',Rome:'Рим, Италия',Athens:'Афины, Греция',Wellington:'Веллингтон, Новая Зеландия',Amsterdam:'Амстердам, Нидерланды'};
   let photoCredits=[];
-  fetch('assets/credits.json').then(r=>r.ok?r.json():[]).then(v=>{photoCredits=v;}).catch(()=>{});
+  fetch('assets/credits.json').then(r=>r.ok?r.json():[]).then(v=>{
+    photoCredits=v;
+    if(screen==='quiz'&&state.run&&Object.hasOwn(state.run.answers,state.run.ids[state.run.position])){
+      const currentPhoto=main.querySelector('.journey-photo img');
+      const currentCaption=main.querySelector('.journey-photo figcaption');
+      const photo=questionPhoto(byId(state.run.ids[state.run.position]),true);
+      if(currentPhoto){currentPhoto.src='assets/'+photo.file;currentPhoto.alt=photo.caption;}
+      if(currentCaption)currentCaption.innerHTML=icon('pin')+' '+esc(photo.caption);
+    }
+  }).catch(()=>{});
+  function questionPhoto(q,answered){
+    const t=topic(q.topic);
+    const credit=answered&&q.photo?photoCredits.find(c=>c.id===q.photo||c.place.toLowerCase()===q.photo):null;
+    if(credit)return {file:credit.file,caption:credit.caption||photoNames[credit.place]||credit.place.replaceAll('_',' ')};
+    const freePhotos={venice:'Венеция, Италия',tokyo:'Токио, Япония',newyork:'Нью-Йорк, США'};
+    if(answered&&freePhotos[q.photo])return {file:q.photo+'.jpg',caption:freePhotos[q.photo]};
+    return {file:t.image,caption:t.caption};
+  }
   const source = q => `<a class="source-link" href="${esc(q.source[1])}" target="_blank" rel="noopener noreferrer">${esc(q.source[0])} ${arrow}</a>`;
   function focusMain(){main.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
   function stats(r){const correct=r.ids.filter(id=>r.answers[id]===byId(id).correct).length;const skipped=r.ids.filter(id=>r.answers[id]===-1).length;return {correct,skipped,wrong:r.ids.length-correct-skipped,percent:Math.round(correct/r.ids.length*100)};}
@@ -69,6 +86,7 @@
     main.innerHTML=`
       <section class="hero shell">
         <div class="hero-copy">
+          <a class="club-invitation" href="https://belau.info/kluby_unesko_belarus/minsk/klub_unesko__pokolenie_Neht_/" target="_blank" rel="noopener noreferrer"><img src="assets/club-next.jpg" alt="Эмблема клуба «Поколение NEXT»" width="52" height="52"><span><small>ВАС ПРИГЛАШАЕТ</small><strong>Клуб ЮНЕСКО<br>«Поколение NEXT»</strong></span></a>
           <div class="eyebrow"><span class="tiny-star" aria-hidden="true">${icon('asterisk')}</span> КВИЗ КО ВСЕМИРНОМУ ДНЮ ГОРОДОВ</div>
           <h1><span class="hero-first-line">У каждого города —</span><br><em>своя история.</em></h1>
           <p class="hero-description">А сколько из них знаете вы? От знакомых улиц Минска до городов на другом конце света — отправляйтесь в путешествие из 41 вопроса.</p>
@@ -82,7 +100,7 @@
           <svg class="flight-line" viewBox="0 0 540 480" fill="none" aria-hidden="true"><path d="M58 374C-36 190 186 45 348 81s112 121 170 51" stroke="#a8b9a8" stroke-width="1.5" stroke-dasharray="4 6"/><path d="m499 127 26-9-12 27-3-15Z" fill="#224d42"/></svg>
           <figure class="postcard venice"><img src="assets/venice.jpg" alt="Гранд-канал и собор Санта-Мария-делла-Салюте в Венеции" fetchpriority="high"><figcaption>${icon('pin')} Венеция, Италия <span>45.44° N · 12.33° E</span></figcaption></figure>
           <figure class="postcard tokyo"><img src="assets/tokyo.jpg" alt="Неоновые улицы района Акихабара в Токио"><figcaption>${icon('pin')} Токио, Япония <span>35.68° N</span></figcaption></figure>
-          <figure class="postcard minsk"><img src="assets/minsk.jpg" alt="Современная застройка и зелёная набережная Минска"><figcaption>${icon('pin')} Минск, Беларусь <span>53.90° N</span></figcaption></figure>
+          <figure class="postcard minsk"><img src="assets/minsk-gates.jpg" alt="Две башни архитектурного ансамбля «Ворота Минска»"><figcaption>${icon('pin')} Минск, Беларусь <span>53.90° N</span></figcaption></figure>
           <div class="round-stamp" aria-label="Откройте мир по-новому"><span>ОТКРОЙТЕ МИР</span>${icon('compass')}<span>ПО-НОВОМУ</span></div>
           <span class="art-spark spark-one" aria-hidden="true">${icon('asterisk')}</span><span class="art-spark spark-two" aria-hidden="true">${icon('plus')}</span>
         </div>
@@ -104,9 +122,7 @@
     const q=byId(r.ids[r.position]),t=topic(q.topic),done=Object.hasOwn(r.answers,q.id),a=r.answers[q.id];
     const answered=Object.keys(r.answers).length;
     const correct=r.ids.slice(0,r.position+1).filter(id=>r.answers[id]===byId(id).correct).length;
-    const credit=done&&q.photo?photoCredits.find(c=>c.place.toLowerCase()===q.photo):null;
-    const image=credit?credit.file:(done&&['venice','tokyo','newyork'].includes(q.photo)?q.photo+'.jpg':t.image);
-    const caption=credit?(photoNames[credit.place]||credit.place.replaceAll('_',' ')):(done&&q.photo==='venice'?'Венеция, Италия':done&&q.photo==='tokyo'?'Токио, Япония':done&&q.photo==='newyork'?'Нью-Йорк, США':t.caption);
+    const {file:image,caption}=questionPhoto(q,done);
     main.innerHTML=`<section class="quiz-shell shell">
       <div class="quiz-toolbar"><button class="text-link" data-action="home">${icon('arrow-left','inline-icon')} На главную</button>${r.mode==='practice'?'<span>ТРЕНИРОВКА ПО ОШИБКАМ</span>':''}</div>
       <div class="progress-heading"><span>Вопрос <strong>${r.position+1}</strong> из ${r.ids.length}</span></div>
@@ -182,7 +198,7 @@
   function rules(){showDialog('Прогулка, а не экзамен.',`<ol class="rules-list"><li><strong>41 вопрос, четыре темы.</strong><p>В каждом вопросе три варианта. Правильный — один. Варианты перемешиваются при новом прохождении.</p></li><li><strong>Сначала выбор, потом открытие.</strong><p>Нажмите на вариант ответа: сразу появятся результат, правильный ответ, объяснение и источник. Выбранный ответ сохраняется автоматически, изменить его нельзя.</p></li><li><strong>Один верный ответ — один балл.</strong><p>Максимум — 41 балл. Ошибки и «Пока не знаю» дают 0 баллов. Штрафов и бонусов за скорость нет.</p></li><li><strong>Идите в своём темпе.</strong><p>Таймера нет. На общем устройстве начните новое прохождение для следующего участника.</p></li><li><strong>В конце — личный маршрут.</strong><p>Баллы по темам, все ваши ответы и рекомендации. Тренировка по ошибкам проходит отдельно и не меняет основной результат.</p></li></ol><button class="button primary" data-action="close">Всё понятно ${arrow}</button>`);}
   function about(){
     const links=[...new Map(Q.map(q=>[q.source[1],q.source])).values()];
-    showDialog('О городах. С любопытством.',`<p>Независимый образовательный квиз ко Всемирному дню городов, который ООН отмечает 31 октября. Это авторский проект, не официальный ресурс ООН.</p><p>За основу взят предоставленный список из 41 вопроса. Вопросы о статистике и рекордах уточнены по датам и определениям. Формулировки исторических гипотез отделены от установленных фактов. Проверка материалов: 30 октября 2026 года.</p><p>Ответы хранятся только в вашем браузере. Имена, почта и регистрация для прохождения не нужны. Общего рейтинга участников нет.</p><h3>Источники вопросов</h3><div class="sources-list">${links.map(([name,url])=>`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(name)} ${arrow}</a>`).join('')}</div><h3>Фотографии</h3><p>Венеция, Токио и Нью-Йорк — <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash</a>. Оригиналы: <a href="https://images.unsplash.com/photo-1514890547357-a9ee288728e0" target="_blank" rel="noopener noreferrer">Венеция</a>, <a href="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf" target="_blank" rel="noopener noreferrer">Токио</a>, <a href="https://images.unsplash.com/photo-1519501025264-65ba15a82390" target="_blank" rel="noopener noreferrer">Нью-Йорк</a>.</p><div class="sources-list photo-credits">${photoCredits.length?photoCredits.map(c=>`<p><a href="${esc(c.source)}" target="_blank" rel="noopener noreferrer">${esc(c.place.replaceAll('_',' '))}</a> — ${esc(c.author)} · <a href="${esc(c.licenseUrl||c.source)}" target="_blank" rel="noopener noreferrer">${esc(c.license)}</a>. Изображения обрезаны для отображения.</p>`).join(''):'<p>Метаданные фото доступны в <a href="assets/credits.json" target="_blank">файле атрибуции</a>.</p>'}</div><p>Шрифты Manrope и Lora распространяются по SIL Open Font License.</p>`);
+    showDialog('О городах. С любопытством.',`<div class="about-club"><img src="assets/club-next.jpg" alt="Эмблема клуба «Поколение NEXT»" width="64" height="64"><div><p class="eyebrow">АВТОРЫ ПРОЕКТА</p><strong>Клуб ЮНЕСКО<br>«Поколение NEXT»</strong></div></div><p>Квиз подготовлен клубом ЮНЕСКО «Поколение NEXT» ко Всемирному дню городов, который отмечается 31 октября. Это образовательный проект клуба, не официальный ресурс ООН или ЮНЕСКО.</p><p><a href="https://belau.info/kluby_unesko_belarus/minsk/klub_unesko__pokolenie_Neht_/" target="_blank" rel="noopener noreferrer">Страница клуба в Белорусской Ассоциации клубов ЮНЕСКО</a>. Эмблема взята с этой страницы.</p><p>За основу взят предоставленный список из 41 вопроса. Вопросы о статистике и рекордах уточнены по датам и определениям. Формулировки исторических гипотез отделены от установленных фактов. Проверка материалов: 31 октября 2026 года.</p><p>Ответы хранятся только в вашем браузере. Имена, почта и регистрация для прохождения не нужны. Общего рейтинга участников нет.</p><h3>Источники вопросов</h3><div class="sources-list">${links.map(([name,url])=>`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(name)} ${arrow}</a>`).join('')}</div><h3>Фотографии</h3><p>Венеция, Токио и Нью-Йорк — <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash</a>. Оригиналы: <a href="https://images.unsplash.com/photo-1514890547357-a9ee288728e0" target="_blank" rel="noopener noreferrer">Венеция</a>, <a href="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf" target="_blank" rel="noopener noreferrer">Токио</a>, <a href="https://images.unsplash.com/photo-1519501025264-65ba15a82390" target="_blank" rel="noopener noreferrer">Нью-Йорк</a>.</p><div class="sources-list photo-credits">${photoCredits.length?photoCredits.map(c=>`<p><a href="${esc(c.source)}" target="_blank" rel="noopener noreferrer">${esc(c.caption||c.place.replaceAll('_',' '))}</a> — ${esc(c.author)} · <a href="${esc(c.licenseUrl||c.source)}" target="_blank" rel="noopener noreferrer">${esc(c.license)}</a>. Изображения обрезаны для отображения.</p>`).join(''):'<p>Метаданные фото доступны в <a href="assets/credits.json" target="_blank">файле атрибуции</a>.</p>'}</div><p>Шрифты Manrope и Lora распространяются по SIL Open Font License.</p>`);
   }
   document.addEventListener('click',e=>{
     const option=e.target.closest('[data-option]');
